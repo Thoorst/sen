@@ -49,6 +49,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     Sensor Sensor3;
     TextView textView3;
 
+    Sensor Sensor4;
+    TextView textView6;
+
+
     private CameraManager mCameraManager;
     private String mCameraId;
     private Boolean light_on;
@@ -67,11 +71,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         textView = findViewById(R.id.textView1);
         textView2 = findViewById(R.id.textView2);
         textView3 = findViewById(R.id.textView3);
+        textView6 = findViewById(R.id.textView6);
         manager = (SensorManager)getSystemService(Service.SENSOR_SERVICE);
 
         Sensor = manager.getDefaultSensor(Sensor.TYPE_LIGHT);
         Sensor2 = manager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         Sensor3 = manager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        Sensor4 = manager.getDefaultSensor(Sensor.TYPE_GRAVITY);
         light_on=false;
 
         mCameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
@@ -153,6 +159,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if(sensorEvent.sensor.getType()== android.hardware.Sensor.TYPE_PROXIMITY)
         {
             textView3.setText(Integer.toString((int) sensorEvent.values[0]));
+        }
+        if(sensorEvent.sensor.getType()== android.hardware.Sensor.TYPE_GRAVITY){
+            textView6.setText(Integer.toString((int) sensorEvent.values[0]));
         }
     }
 
